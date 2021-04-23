@@ -8,3 +8,5 @@ nbval
 click
 flask
 requests
+numpy
+seaborn
