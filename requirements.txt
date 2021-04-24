@@ -10,3 +10,4 @@ flask
 requests
 numpy
 seaborn
+sklearn
