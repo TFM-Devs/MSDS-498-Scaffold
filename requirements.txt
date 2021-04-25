@@ -11,3 +11,4 @@ requests
 numpy
 seaborn
 sklearn
+boto3
