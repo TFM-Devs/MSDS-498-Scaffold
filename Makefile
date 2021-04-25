@@ -7,7 +7,7 @@ format:
     
 lint:
 	pylint --disable=R,C hello.py
-	#pylint --disable=R,C NCAA_Model_Week_2.ipynb
+	pylint --disable=R,C data_pipeline_v01.py
 
 test:
 	python -m pytest -vv --cov=hello test_hello.py
