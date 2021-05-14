@@ -13,3 +13,4 @@ seaborn
 sklearn
 boto3
 ipython
+requests
