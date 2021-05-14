@@ -1,9 +1,9 @@
 import boto3
 import click
-
-__TableName__ = "MarketMoversFromS3"
-Primary_Column_Name = 'PrimaryKey'
-Primary_Key = 'Aaron Gordon2014 Prizm Base Raw'
+from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Attr
+import pandas as pd
+import json
 
 Columns = ['PrimaryKey', 
 'Card', 
@@ -18,35 +18,18 @@ Columns = ['PrimaryKey',
 'Total_of_Sales'
 ]
 
-#client = boto3.client('dynamodb')
-db = boto3.resource('dynamodb')
-
-table = db.Table(__TableName__)
-
 @click.command(help='this is just a basic player search app')
-@click.option('--primary_key', prompt="I need the primary key value", help="Need primary_key")
-@click.option('--player_name', prompt="I need the name of the player", help="Need name")
-@click.option('--metric', prompt='I need the name of the metric', help="Need metric")
+@click.option('--player', prompt="I need the player name", help="Need primary_key")
 
-def player_metric(primary_key, player_name, metric):
-   response = table.get_item(
-       Key={
-           Primary_Column_Name: primary_key
-       }
-     )
-   print(response['Item'][metric])
+def player_metric(player):
+   dynamodb = boto3.resource('dynamodb')
+   table = dynamodb.Table('MarketMoversFromS3')
+   response = table.scan(
+       FilterExpression=Attr('Player').eq(player))
    
-   
-    #print(response["Player"])
-    #print(response[metric])
-    
-#def player_metric(player_name, metric):
-#    response = table.scan(
-#        FilterExperssion = table.attr('Player').eq('Allen Iverson'))
-#    print(response)
-
-    #print(response["Player"])
-    #print(response[metric])
+   df = pd.DataFrame(response['Items'])
+   df = df[['Player','Card','Start_Avg','End_Avg','Percent_Change','Sales_Volume']]
+   print(df)
 
 if __name__ == '__main__':
     player_metric()
