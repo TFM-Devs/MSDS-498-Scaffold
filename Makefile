@@ -6,7 +6,7 @@ format:
 	black *.py
     
 lint:
-	pylint --disable=R,C marekt_movers_cli.py
+	pylint --disable=R,C market_movers_cli.py
 	pylint --disable=R,C market_movers_lambda.py
 
 test:
