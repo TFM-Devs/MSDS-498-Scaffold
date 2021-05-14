@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "financial-av-api-extract-stack"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1jqi9t1ineb0i"
+s3_prefix = "financial-av-api-extract-stack"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
