@@ -6,9 +6,8 @@ format:
 	black *.py
     
 lint:
-	pylint --disable=R,C hello.py
-	pylint --disable=R,C import_test.py
-	pylint --disable=R,C LoadBasketballCSV.py
+	pylint --disable=R,C marekt_movers_cli.py
+	pylint --disable=R,C market_movers_lambda.py
 
 test:
 	python -m pytest -vv --cov=hello test_hello.py
