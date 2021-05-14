@@ -1,5 +1,0 @@
-requests
-awswrangler
-urllib3
-boto3
-numpy==1.19.2
